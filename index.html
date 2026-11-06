@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigues Food</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Rodrigues Food</h1>
+    </header>
+
+    <main>
+        <!-- Card de Boas-Vindas -->
+        <section class="hero-section">
+            <div class="texto-fome">
+                <h3>🤤 BATEU A FOME? A GENTE RESOLVE! 🍔🍟</h3>
+                <p>Quando a fome aperta, nada melhor do que uma comida deliciosa para alegrar o seu dia! ❤️</p>
+                <p>Temos opções para todos os gostos: marmitas, hambúrgueres, salgados, doces e bebidas para acompanhar.</p>
+                <p>🍔 Escolha seu favorito, faça seu pedido e deixe o resto com a gente!</p>
+                <p class="destaque-rodape">Rodrigues Food — Matando sua fome com muito sabor! 🛵🔥</p>
+                
+                <a href="#categorias-section" class="btn-pedir-topo">Ver Cardápio</a>
+            </div>
+        </section>
+
+        <!-- Grade de Categorias Principais -->
+        <section id="categorias-section" class="categorias-container">
+            <div class="grid-categorias">
+                <a href="#lanches" class="card-categoria">
+                    <span>🍔</span>
+                    <h3>Lanches</h3>
+                </a>
+                <a href="#marmitas" class="card-categoria">
+                    <span>🍱</span>
+                    <h3>Marmitas</h3>
+                </a>
+                <a href="#bebidas" class="card-categoria">
+                    <span>🥤</span>
+                    <h3>Bebidas</h3>
+                </a>
+                <a href="#sobremesas" class="card-categoria">
+                    <span>🍰</span>
+                    <h3>Sobremesas</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- ÁREA DO CARDÁPIO -->
+        <section class="cardapio-produtos">
+
+            <!-- LANCHES -->
+            <article id="lanches" class="categoria-item">
+                <h2 class="titulo-categoria">🍔 Lanches</h2>
+
+                <div class="subcategoria">
+                    <h3 class="titulo-subcategoria">🍔 Hambúrgueres</h3>
+                    <div class="lista-produtos">
+                        
+                        <!-- Produto 1 -->
+                        <div class="card-produto">
+                            <div class="foto-produto">
+                                <img src="duplo-burguer.jpg" alt="Duplo Burguer Casal">
+                            </div>
+                            <div class="info-produto">
+                                <div class="badge-titulo">Duplo Burguer Casal</div>
+                                <p class="descricao-produto">2 Hambúrgueres 150g, cheddar duplo, bacon, alface, tomate e molho.</p>
+                                <div class="rodape-produto">
+                                    <span class="preco">R$ 45,90</span>
+                                    <button class="btn-adicionar" onclick="adicionarAoCarrinho('Duplo Burguer Casal', 45.90)">Adicionar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produto 2 -->
+                        <div class="card-produto">
+                            <div class="foto-produto">
+                                <img src="x-salada.jpg" alt="X-Salada Especial">
+                            </div>
+                            <div class="info-produto">
+                                <div class="badge-titulo">X-Salada Especial</div>
+                                <p class="descricao-produto">Hambúrguer 120g, queijo prato, alface, tomate e maionese.</p>
+                                <div class="rodape-produto">
+                                    <span class="preco">R$ 22,00</span>
+                                    <button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Salada Especial', 22.00)">Adicionar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </article>
+
+            <!-- BEBIDAS -->
+            <article id="bebidas" class="categoria-item">
+                <h2 class="titulo-categoria">🥤 Bebidas</h2>
+                <div class="subcategoria">
+                    <div class="lista-produtos">
+                        <div class="card-produto">
+                            <div class="foto-produto">
+                                <img src="coca.jpg" alt="Coca-Cola Lata">
+                            </div>
+                            <div class="info-produto">
+                                <div class="badge-titulo">Coca-Cola Lata</div>
+                                <p class="descricao-produto">Lata 350ml gelada.</p>
+                                <div class="rodape-produto">
+                                    <span class="preco">R$ 6,00</span>
+                                    <button class="btn-adicionar" onclick="adicionarAoCarrinho('Coca-Cola Lata', 6.00)">Adicionar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- BARRA / BOTÃO FLUTUANTE DO CARRINHO -->
+    <div id="carrinho-flutuante" class="carrinho-flutuante oculto">
+        <div class="carrinho-info">
+            <span>🛒 <strong id="contador-carrinho">0</strong> itens</span>
+            <span>Total: <strong id="valor-total">R$ 0,00</strong></span>
+        </div>
+        <button onclick="abrirModalCarrinho()" class="btn-ver-carrinho">Ver Carrinho</button>
+    </div>
+
+    <!-- MODAL DO CARRINHO -->
+    <div id="modal-carrinho" class="modal oculto">
+        <div class="modal-conteudo">
+            <h2>Seu Carrinho 🛒</h2>
+            <div id="lista-itens-carrinho" class="lista-itens-modal">
+                <!-- Os itens adicionados aparecem aqui dinamicamente -->
+            </div>
+            
+            <div class="modal-footer">
+                <div class="total-modal">Total: <span id="total-modal-valor">R$ 0,00</span></div>
+                
+                <div class="form-grupo">
+                    <label for="nome-cliente">Seu Nome:</label>
+                    <input type="text" id="nome-cliente" placeholder="Digite seu nome...">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="endereco-cliente">Endereço de Entrega:</label>
+                    <input type="text" id="endereco-cliente" placeholder="Rua, número, bairro...">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="forma-pagamento">💳 Forma de Pagamento:</label>
+                    <select id="forma-pagamento" class="select-pagamento">
+                        <option value="⚡ PIX">⚡ PIX (Chave enviada no WhatsApp)</option>
+                    </select>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="obs-cliente">Observações (opcional):</label>
+                    <textarea id="obs-cliente" rows="2" placeholder="Ex: Sem cebola, molho à parte..."></textarea>
+                </div>
+
+                <button onclick="enviarParaWhatsApp()" class="btn-whatsapp">Finalizar no WhatsApp 📲</button>
+                <button onclick="fecharModalCarrinho()" class="btn-fechar">Continuar Comprando</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DO CARRINHO -->
+    <script>
+        let carrinho = [];
+
+        function adicionarAoCarrinho(nome, preco) {
+            let itemEncontrado = carrinho.find(item => item.name === nome);
+            if (itemEncontrado) {
+                itemEncontrado.quantidade++;
+            } else {
+                carrinho.push({ name: nome, price: preco, quantidade: 1 });
+            }
+            atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+            let contador = document.getElementById('contador-carrinho');
+            let valorTotal = document.getElementById('valor-total');
+            let totalModalValor = document.getElementById('total-modal-valor');
+            let barraFlutuante = document.getElementById('carrinho-flutuante');
+            
+            let qtdTotal = 0;
+            let precoTotal = 0;
+
+            carrinho.forEach(item => {
+                qtdTotal += item.quantidade;
+                precoTotal += item.price * item.quantidade;
+            });
+
+            contador.innerText = qtdTotal;
+            valorTotal.innerText = `R$ ${precoTotal.toFixed(2).replace('.', ',')}`;
+            totalModalValor.innerText = `R$ ${precoTotal.toFixed(2).replace('.', ',')}`;
+
+            if (qtdTotal > 0) {
+                barraFlutuante.classList.remove('oculto');
+            } else {
+                barraFlutuante.classList.add('oculto');
+            }
+        }
+
+        function abrirModalCarrinho() {
+            let listaHTML = document.getElementById('lista-itens-carrinho');
+            listaHTML.innerHTML = '';
+
+            if (carrinho.length === 0) {
+                listaHTML.innerHTML = '<p>Seu carrinho está vazio.</p>';
+                return;
+            }
+
+            carrinho.forEach((item, index) => {
+                listaHTML.innerHTML += `
+                    <div class="item-carrinho-modal">
+                        <span>${item.quantidade}x ${item.name}</span>
+                        <span>R$ ${(item.price * item.quantidade).toFixed(2).replace('.', ',')}</span>
+                        <button onclick="removerItem(${index})" class="btn-remover">❌</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('modal-carrinho').classList.remove('oculto');
+        }
+
+        function fecharModalCarrinho() {
+            document.getElementById('modal-carrinho').classList.add('oculto');
+        }
+
+        function removerItem(index) {
+            carrinho.splice(index, 1);
+            atualizarCarrinho();
+            abrirModalCarrinho();
+        }
+
+        function enviarParaWhatsApp() {
+            let nome = document.getElementById('nome-cliente').value.trim();
+            let endereco = document.getElementById('endereco-cliente').value.trim();
+            let observacao = document.getElementById('obs-cliente').value.trim();
+            let pagamento = document.getElementById('forma-pagamento').value;
+
+            if (nome === '' || endereco === '') {
+                alert('Por favor, preencha seu nome e endereço de entrega!');
+                return;
+            }
+
+            let mensagem = `*Novo Pedido - Rodrigues Food* 🍔\n\n`;
+            mensagem += `👤 *Cliente:* ${nome}\n`;
+            mensagem += `📍 *Endereço:* ${endereco}\n`;
+            mensagem += `💳 *Pagamento:* ${pagamento}\n`;
+            
+            if (observacao !== '') {
+                mensagem += `📝 *Observação:* ${observacao}\n`;
+            }
+
+            mensagem += `\n📋 *Itens do Pedido:*\n`;
+
+            let precoTotal = 0;
+            carrinho.forEach(item => {
+                let subtotal = item.price * item.quantidade;
+                precoTotal += subtotal;
+                mensagem += `- ${item.quantidade}x ${item.name} (R$ ${subtotal.toFixed(2).replace('.', ',')})\n`;
+            });
+
+            mensagem += `\n💰 *Total a pagar:* R$ ${precoTotal.toFixed(2).replace('.', ',')}`;
+
+            let telefone = "55219981525531"; 
+
+            let url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
